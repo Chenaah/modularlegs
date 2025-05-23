@@ -1,0 +1,18 @@
+pyyaml
+omegaconf
+gymnasium
+sbx-rl
+wandb
+mujoco
+lxml
+pytorch_lightning
+imageio
+gymnasium[other]
+tensorboard
+jax[cuda12]
+
+ray
+mujoco-mjx
+tensorflow
+trieste
+-e .

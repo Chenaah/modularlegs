@@ -1,0 +1,184 @@
+agent:
+  action_scale: 1
+  action_space: null
+  clip_actions: 0.5
+  clip_actions_list: null 
+  clip_observations: 100
+  control_mode: position
+  default_dof_pos: 0
+  filter_action: false
+  forward_vec: [1, 0, 0]
+  gravity_vec: [0, 0, -1]
+  include_history_steps: 1
+  num_act: 1
+  num_obs: 8
+  num_envs: 1
+  obs_version: roll4
+  resampling_time: 10
+  reward_version: simple2
+  reward_params: null
+  done_version: null
+  command_x_choices: null
+  commands_ranges: null
+  predefined_commands: null
+  action_remap_type: null
+  projected_forward_vec: null
+  projected_upward_vec: null
+  torso_node_id: 0 # Used for specific observation / reward functions
+  action_melter: false
+  action_melter_axis: 3
+
+  
+interface:
+  module_ids: [0]
+  torso_module_id: 0 # Used for mirror the default base frame in the simulation
+  sources: ["imu", "optitrack"]
+  struct_format: 'iiiififfffffiiifffffffffffffii'
+  protocol: 'UDP'
+  imu_window_size: 4
+  dashboard: true
+  kp_ratio: 1.5
+  kd_ratio: 2.
+  enable_filter: false # Action filter on the firmware level
+  check_action_safety: false
+  calibration_modes: null
+  broken_motors: null
+
+logging:
+  data_dir: null
+  log_raw_data: false
+  log_sa_data: false
+  print_data: false
+  robot_data_dir: auto
+
+robot:
+  dt: 0.05
+  mode: real
+  motor_range: [-6, 6] # Used for limiting the real robot's action range
+  frozen_joints: null
+  num_modules: 1
+  theta: 0.610865 # No effect for old robots
+  kp: 8. # 20
+  kd: 0.2 # 0.5
+
+sim:
+  asset_file: zero-realx.xml
+  asset_draft: null
+  mj_dt: 0.025
+  auto_generate_assets: false
+  init_pos: [0, 0, 0.1]
+  init_quat: [0, 0, 0, 1] # x: facing forward
+  init_joint_pos: 0
+  randomize_init_joint_pos: false
+  randomize_orientation: false
+  fully_randomize_orientation: false
+  randomize_ini_vel: true
+  noisy_init: true # add small noise to initial position
+  latency_scheme: -1 # -1: no latency
+  random_latency_scheme: false
+  randomize_mass: false
+  random_mass_percentage: 0.1
+  mass_offset: 0 # Used for adding additional damping
+  randomize_friction: false
+  random_friction_range: [[0.8, 1.0], [0.3, 0.5]] # Frictions for the balls and sticks
+  randomize_rolling_friction: false
+  random_rolling_friction_range: [0.0001, 0.0005]
+  noisy_actions: false
+  action_noise_std: 0.1
+  noisy_observations: false
+  obs_noise_std: 0.2
+  render: false
+  render_size: [426,240]
+  tn_constraint: true
+  broken_motors: null
+  pyramidal_cone: false
+  terrain: null
+  terrain_params: null
+  reset_terrain: false
+  reset_terrain_type: null
+  reset_terrain_params: null
+  socks: null
+  randomize_assemble_error: false # Require design pipeline
+  randomize_damping: false
+  random_damping_range: [0.02, 0.2]
+  random_armature_range: [0.01, 0.05]
+  random_external_torque: false
+  random_external_torque_range: [0, 4]
+  random_external_torque_bodies: [2]
+  random_external_force: false
+  random_external_force_interval: 10 # Time steps
+  random_external_force_ranges: [[0, 4]]
+  random_external_force_bodies: ['l0']
+  random_external_force_positions: [[0,0,0]]
+  random_external_force_directions: [[0,0,0]]
+  random_external_force_durations: [10] # Time steps
+  randomize_dof_pos: false
+  random_dof_pos_range: [-1, 1]
+  randomize_pd_controller: false
+  random_kp_range: [15, 25]
+  random_kd_range: [0.3, 0.8]
+  add_scaffold_walls: false
+
+  
+
+trainer:
+  algorithm: CrossQ
+  algorithm_params: null
+  curriculum_step: 0
+  mode: play # train, play, distill, record
+  device: cuda:0
+  load_run: null
+  record_trajectories: false
+  total_steps: 1e6
+  wandb_on: false
+  notes: ""
+  seed: 0
+  num_envs: 1
+
+  # Play
+  joystick: true
+  candidate_configs: null
+  auto_recovery: false
+  recovery_config: null
+  recovery_time: 3
+  auto_multiplex: false
+  monitored_module: 3
+  multiplex: false
+  multiplex_type: "4+1"
+
+  record:
+    num_envs: 100
+    num_workers: 1
+    record_steps: 2e6
+    normalize_default_pos: false
+    num_runs: 1
+  distillation:
+    load_rollouts: null
+    num_privileged_obs: 0
+    total_steps: 150000
+    obs_version: null
+  transformer:
+    dataset: null
+    use_action_tanh: true
+    context_len: 60
+    n_blocks: 12
+    embed_dim: 384
+    n_heads: 6
+  evolution:
+    optimizer: turbo
+    design_pipeline: null
+    num_servers: 8
+    visiable_gpus: [1,2,3,4]
+    self_collision_threshold: 999
+    ave_speed_threshold: 0.15
+    max_mutate_depth: 10000
+    fitness_type: tail
+    fitness_per_module: false
+    init_pose_type: "highest"
+    use_result_buffer: true
+    num_trials: 500
+    vae_checkpoint: null
+    load_gp: null
+    likelihood_variance: 1e-7
+    latent_dim: 8
+    opt_bounds: [-4, 4]

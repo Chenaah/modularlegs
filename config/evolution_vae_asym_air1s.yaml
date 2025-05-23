@@ -1,0 +1,102 @@
+
+
+
+agent:
+  action_scale: 1
+  clip_actions: 1.2
+  clip_observations: 100
+  control_mode: position
+  gravity_vec: [0, 0, -1]
+  include_history_steps: 3
+  num_act: "?"
+  num_obs: "?"
+  action_remap_type: null
+  obs_version: robust_proprioception
+  reward_version: cheat_isaac_general
+  done_version: ballance_auto
+  default_dof_pos: "?"
+  projected_forward_vec: "?"
+  projected_upward_vec: "?"
+  forward_vec: "?"
+  reward_params: [0.6,
+                  "0.2-0.4",
+                  -0.1,
+                  0.,
+                  -0.02,
+                  -0.01,
+                  -0.000002,
+                  0,
+                  0,
+                  0.
+                  ]
+  predefined_commands: [0.6, 0, 2, 0.15, 0]
+
+interface: {}
+
+logging:
+  data_dir: null
+  log_raw_data: false
+  print_data: false
+
+robot:
+  dt: 0.05
+  mode: sim
+  motor_range: [-1.5708, 1.5708]
+  theta: 0.4625123
+
+sim:
+  asset_file: "?"
+  init_pos: "?"
+  init_quat: "?"
+  randomize_orientation: true
+  randomize_ini_vel: false
+  noisy_init: false 
+  render: false
+  terrain: null
+  pyramidal_cone: false
+
+  latency_scheme: 0
+  random_latency_scheme: true
+  randomize_mass: true
+  random_mass_percentage: 0.1
+  mass_offset: 0.1
+  randomize_friction: true
+  random_friction_range: [[0.8, 1.2], [0.8, 1.2]]
+  noisy_actions: true
+  action_noise_std: 0.1
+  noisy_observations: true
+  obs_noise_std: 0.2
+
+  
+  
+
+trainer:
+  total_steps: 4e5
+  load_replay_buffer: null
+  load_run: null
+  load_gp: null
+  max_ep_len: 1000
+  max_test_ep_len: 1000
+  mode: train
+  wandb_on: true
+  seed: 200000
+
+  evolution:
+    optimizer: abo
+    design_pipeline: "?"
+    num_servers: 9
+    visiable_gpus: [0,1,2]
+    self_collision_threshold: 999
+    ave_speed_threshold: 0.15
+    max_mutate_depth: 10000
+    fitness_type: tail
+    fitness_per_module: false
+    init_pose_type: "optimized"
+    pose_optimization_type: "stablefast"
+    pose_optimization_params: [300, 250]
+    vae_checkpoint: null
+    dataset_name: "designs_asym_filtered"
+    use_result_buffer: true
+    likelihood_variance: 1e-3
+    latent_dim: 8
+    opt_bounds: [-4, 4]

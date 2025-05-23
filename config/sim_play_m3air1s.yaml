@@ -1,0 +1,51 @@
+
+agent:
+  action_scale: 1
+  clip_actions: 1.2
+  clip_observations: 100
+  control_mode: position
+  gravity_vec: [0, 0, -1]
+  include_history_steps: 3
+  num_act: 1
+  num_obs: 9
+  obs_version: robust_proprioception
+  reward_version: tilted_night_jing
+
+interface: 
+  module_ids: [5]
+  torso_module_id: 5
+  enable_filter: false
+
+logging:
+  data_dir: null
+  log_raw_data: false
+  print_data: false
+
+robot:
+  dt: 0.05
+  mode: sim
+  motor_range: [-1.5708, 1.5708]
+  theta: 0.4625123
+  kp: 8.
+  kd: 0.2
+
+sim:
+  asset_file: m3air1s_comr.xml
+  init_pos: [0, 0, 0.07]
+  init_quat: y
+  randomize_orientation: false
+  randomize_ini_vel: false
+  render: true
+  randomize_friction: true
+  random_friction_range: [[0.8, 1.0], [0.8, 1.0]]
+  randomize_rolling_friction: true
+  random_rolling_friction_range: [10, 10]
+
+trainer:
+  joystick: false
+  load_replay_buffer: null
+  load_run: path_to_zip_model
+  max_ep_len: 1000
+  max_test_ep_len: 1000
+  mode: play
+  wandb_on: false

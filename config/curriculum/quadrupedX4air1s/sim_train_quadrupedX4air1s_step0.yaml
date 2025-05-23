@@ -1,0 +1,67 @@
+
+agent:
+  action_scale: 1
+  clip_actions: 1.2
+  clip_observations: 100
+  control_mode: position
+  gravity_vec: [0, 0, -1]
+  include_history_steps: 3
+  num_act: 5
+  num_obs: 21
+  obs_version: robust_proprioception
+  reward_version: cheat_isaac_general
+  done_version: ballance_up
+  default_dof_pos: [0,-1,1,1,-1]
+  projected_upward_vec: [0, -0.4460725292665206, 0.894996814873533]
+  projected_forward_vec: [0.0, 0.894996814873533, 0.4460725292665206]
+  forward_vec: [1, 0.0, 0]
+  predefined_commands: [0.6, 0, 2]
+  reward_params: [0.7,0.3,0,0.,-0.02,-0.01,-0.000002]
+  filter_action: true
+
+interface: {}
+
+logging:
+  data_dir: null
+  log_raw_data: false
+  print_data: false
+
+robot:
+  dt: 0.05
+  mode: sim
+  motor_range: [-1.5708, 1.5708]
+  theta: 0.4625123
+  kp: 8
+  kd: 0.2
+
+sim:
+  asset_file: quadrupedX4air1s.xml
+  init_pos: [-0, 0, 0.45134612]
+  init_quat: [0.94141482, -0.33129125,  0.05890461, -0.02268241]
+  randomize_orientation: true
+  randomize_ini_vel: false
+  noisy_init: false
+  render: false
+  latency_scheme: 0
+  random_latency_scheme: true
+  mass_offset: 0.1
+  randomize_mass: true
+  random_mass_percentage: 0.1
+  randomize_friction: true
+  random_friction_range: [[0.8, 1.2], [0.2, 0.4]]
+  noisy_actions: true
+  action_noise_std: 0.1
+  noisy_observations: true
+  obs_noise_std: 0.2
+
+  
+
+
+trainer:
+  total_steps: 1e6
+  load_replay_buffer: null
+  curriculum_step: 0
+  max_ep_len: 1000
+  max_test_ep_len: 1000
+  mode: train
+  wandb_on: false
