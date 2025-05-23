@@ -3,7 +3,7 @@
 import sys
 import os
 import gdown
-from modular_legs import LEG_ROOT_DIR
+from modularlegs import LEG_ROOT_DIR
 
 def main():
     if len(sys.argv) < 2:

@@ -9,8 +9,8 @@ data/designs/
 *.npz
 *.pkl
 MUJOCO_LOG.TXT
-modular_legs/sim/assets/robots/factory
-modular_legs/sequence_modeling/data
+modularlegs/sim/assets/robots/factory
+modularlegs/sequence_modeling/data
 analysis/plotting/
 box/
 

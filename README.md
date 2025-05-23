@@ -10,14 +10,14 @@ Stay tuned for improvements and expanded functionality. If you run into any issu
 
 First, clone the repository:
 ```bash
-git clone https://github.com/Chenaah/modular_legs.git
-cd modular_legs
+git clone https://github.com/Chenaah/modularlegs.git
+cd modularlegs
 ```
 
 Create a Conda environment with Python 3.10
 ```bash
-conda create -n modular_legs python=3.10 -y
-conda activate modular_legs
+conda create -n modularlegs python=3.10 -y
+conda activate modularlegs
 ```
 
 Install the package:
@@ -32,25 +32,25 @@ pip install -e .
 
 Train a single module:
 ```bash
-python modular_legs/scripts/train_sbx.py sim_train_m3air1s
+python modularlegs/scripts/train_sbx.py sim_train_m3air1s
 ```
 
 Train a quadruped using curriculum learning:
 ```bash
-python modular_legs/scripts/train_sbx.py curriculum/quadrupedX4air1s
+python modularlegs/scripts/train_sbx.py curriculum/quadrupedX4air1s
 ```
 Training logs and checkpoints will be saved to the `exp` directory.
 
 
 ### Run a policy on the real metamachines
 ```bash
-python modular_legs/scripts/train_sbx.py real_play_quadrupedX4air1s
+python modularlegs/scripts/train_sbx.py real_play_quadrupedX4air1s
 ```
 
 ### Generate custom metamachines
 Example of generating a Mujoco XML from a configuration encoding:
 ```bash
-python modular_legs/sim/scripts/homemade_robots_asym.py
+python modularlegs/sim/scripts/homemade_robots_asym.py
 ```
 
 ### Run bayesian optimiation 
@@ -67,7 +67,7 @@ python data/download.py designs_filtered
 
 Once the dataset is ready, run the optimization script:
 ```bash
-python modular_legs/scripts/evolve.py evolution_vae_asym_air1s
+python modularlegs/scripts/evolve.py evolution_vae_asym_air1s
 ```
 
 
